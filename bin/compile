@@ -1,6 +1,10 @@
-#!/usr/bin/env bash
-ln -s /app/.apt/usr "$1/xub"
+BUILD_DIR=$1
 
-# Fix xkbcomp path by rewriting Xvfb binary.
+#!/usr/bin/env bash
+#ln -s /app/.apt/usr "$1/xub"
+
+sed -i s:/usr/bin:/app/nib: "$BUILD_DIR/.apt/usr/bin/Xvfb"
+ln -s /app/.apt/usr/bin $BUILD_DIR/nib
+
 #sed -i s:/usr/bin:/app/xub/bin: "$1/.apt/usr/bin/Xvfb"
-sed -i s:/usr/share/X11/xkb:/app/xub/share/X11/xkb: "$1/.apt/usr/bin/Xvfb"
+#sed -i s:/usr/share/X11/xkb:/app/xub/share/X11/xkb: "$1/.apt/usr/bin/Xvfb"
